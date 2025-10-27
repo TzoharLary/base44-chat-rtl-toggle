@@ -1,0 +1,54 @@
+/* * These styles operate inside the isolated Shadow DOM.
+ * Nothing from the main page can affect them.
+ */
+
+/* * :host is the selector for the host element (the "bubble").
+ * We only use it to set its display.
+ * Its position is set by JavaScript.
+ */
+:host {
+  display: block;
+  z-index: 2147483647;
+}
+
+/* The inner button wrapper */
+.b44-rtl-toggle-inner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border-radius: 6px;
+  transition: background-color 0.1s ease;
+}
+.b44-rtl-toggle-inner:hover {
+  background: rgba(0,0,0,.06);
+}
+
+/* The SVG icon (default LTR state) */
+.icon-svg {
+  width: 16px;  /* Max width from lines */
+  height: 14px; /* Height from viewBox */
+  stroke: #555; /* Line color */
+  stroke-linecap: round;
+  
+  /* Default LTR state */
+  transform: scaleX(1);
+  
+  /* Smooth flip animation */
+  transition: transform 0.25s ease-in-out;
+}
+
+/* * The magic happens here:
+ * When the inner button has data-mode="rtl",
+ * just flip the SVG like a mirror.
+ */
+.b44-rtl-toggle-inner[data-mode="rtl"] .icon-svg {
+  transform: scaleX(-1);
+}

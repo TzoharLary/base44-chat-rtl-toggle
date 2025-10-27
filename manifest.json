@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Base44 Chat RTL Toggle (v11, Shadow DOM)",
+  "version": "2.1.0",
+  "description": "Ultra-stable RTL/LTR toggle with an isolated Shadow DOM, SVG icon, code copy, and list fixes.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://app.base44.com/*",
+    "*://*.base44.app/*",
+    "*://*.base44.dev/*",
+    "*://*.base44.io/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://app.base44.com/*",
+        "*://*.base44.app/*",
+        "*://*.base44.dev/*",
+        "*://*.base44.io/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "page_styles.css"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [ "button_styles.css" ],
+      "matches": [
+        "*://app.base44.com/*",
+        "*://*.base44.app/*",
+        "*://*.base44.dev/*",
+        "*://*.base44.io/*"
+       ]
+    }
+  ]
+}

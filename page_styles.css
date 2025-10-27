@@ -1,0 +1,130 @@
+/* Scope chat direction */
+.b44-chat-root.b44-chat-rtl { direction: rtl !important; }
+.b44-chat-root.b44-chat-ltr { direction: ltr !important; }
+
+/* * ==========================================================
+ * Forceful override for plain text
+ * ==========================================================
+*/
+
+.b44-chat-root.b44-chat-rtl :is(p, div, span, blockquote, mark, em, strong, small) {
+  direction: rtl !important;
+  text-align: right !important;
+}
+.b44-chat-root.b44-chat-ltr :is(p, div, span, blockquote, mark, em, strong, small) {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* * ==========================================================
+ * Forceful override for text inputs
+ * ==========================================================
+*/
+.b44-chat-root.b44-chat-rtl textarea,
+.b44-chat-root.b44-chat-rtl [contenteditable="true"] {
+  direction: rtl !important;
+  text-align: right !important;
+}
+.b44-chat-root.b44-chat-ltr textarea,
+.b44-chat-root.b44-chat-ltr [contenteditable="true"] {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* * ===================================================================
+ * --- Exception for Code Blocks ---
+ * ===================================================================
+*/
+.b44-chat-root.b44-chat-rtl :is(
+  code[class^="language-"],
+  pre[class^="language-"],
+  pre:has(> code[class^="language-"])
+) {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: embed !important; 
+}
+
+
+/* * ===================================================================
+ * --- Styles for new Copy Button ---
+ * ===================================================================
+*/
+
+/* 1. Set the PRE block as a container */
+:is(pre:has(> code[class^="language-"]), pre[class^="language-"]) {
+  position: relative !important;
+}
+
+/* 2. Style the copy button */
+.b44-copy-button {
+  position: absolute;
+  top: 8px; /* Position in corner */
+  right: 8px; /* Position in corner */
+  z-index: 1;
+  
+  /* Basic styling */
+  background-color: #333; /* Dark background */
+  color: #eee; /* Light icon/text */
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+  
+  /* Hide by default, show on hover */
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  
+  /* Ensure SVG looks good */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. Show button on hover over the code block */
+:is(pre:has(> code[class^="language-"]), pre[class^="language-"]):hover .b44-copy-button {
+  opacity: 1;
+}
+
+/* 4. Style for the SVG icon inside the button */
+.b44-copy-button svg {
+  width: 16px;
+  height: 16px;
+  stroke: #eee; /* Light stroke color */
+}
+
+/* 5. Style for "Copied" state */
+.b44-copy-button.copied {
+  background-color: #28a745; /* Green background */
+  color: white;
+  border-color: #28a745;
+  font-weight: bold;
+  font-size: 14px; /* Adjust size for checkmark */
+  padding: 4px 6px; /* Adjust padding */
+}
+
+/* * ===================================================================
+ * --- 🚀 Expert Fix: List Alignment ---
+ * ===================================================================
+ *
+ * The general rule above forces text-align: right on all elements,
+ * which causes text to render *over* the list marker (bullet/number).
+ *
+ * This new, more specific rule overrides that behavior *only* for lists.
+ * It restores the natural list padding for RTL context
+ * and uses 'match-parent' to align text correctly relative to its marker.
+*/
+.b44-chat-root.b44-chat-rtl :is(ul, ol) {
+  /* Restore natural RTL list indentation */
+  padding-right: 40px !important;
+  padding-left: 0 !important;
+}
+
+.b44-chat-root.b44-chat-rtl :is(li) {
+  /* * This is the critical fix. 
+   * It cancels the forced 'text-align: right' and tells the browser
+   * to align the text based on the parent's direction,
+   * which correctly places it to the left of the (right-aligned) marker.
+   */
+  text-align: match-parent !important; 
+}
