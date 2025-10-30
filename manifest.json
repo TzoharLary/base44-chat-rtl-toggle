@@ -3,6 +3,11 @@
   "name": "Base44 Chat RTL Toggle (v11, Shadow DOM)",
   "version": "2.1.0",
   "description": "Ultra-stable RTL/LTR toggle with an isolated Shadow DOM, SVG icon, code copy, and list fixes.",
+  "icons": {
+    "16": "assets/icon.svg",
+    "48": "assets/icon.svg",
+    "128": "assets/icon.svg"
+  },
   "permissions": [
     "storage"
   ],

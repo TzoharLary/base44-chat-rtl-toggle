@@ -101,7 +101,7 @@
 </tr>
 </table>
 
-> **Note:** Add screenshots showing the difference between text without and with the extension enabled.
+> These screenshots illustrate the UI before the extension is enabled and the cleaned-up experience after toggling RTL mode.
 
 ---
 
